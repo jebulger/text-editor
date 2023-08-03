@@ -12,6 +12,7 @@ const initdb = async () =>
     },
   });
 
+// Function to make a put request into the db
 export const putDb = async (content) => {
   const db = await initdb();
   const tx = db.transaction('jate', 'readwrite');
@@ -21,6 +22,7 @@ export const putDb = async (content) => {
   return result;
 };
 
+// Function to get data from the db
 export const getDb = async () => {
   const db = await initdb();
   const tx = db.transaction('jate', 'readonly');

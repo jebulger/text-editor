@@ -15,14 +15,17 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
+      // Plugin for generating html file
       new HtmlWebpackPlugin({
         template: './index.html',
         title: 'JATE Text Editor',
       }),
+      // Plugin for injecting service worker
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js',
       }),
+      // Generates the manifest for the app
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
@@ -35,6 +38,7 @@ module.exports = () => {
         publicPath: './',
         icons: [
           {
+            // Icon and sizing
             src: path.resolve('src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('assets', 'icons'),
@@ -46,10 +50,12 @@ module.exports = () => {
     module: {
       rules: [
         {
+          // Style and css loader rules
           test: /\.css$/i,
           use: ['style-loader', 'css-loader'],
         },
         {
+          // Babel-loader rules
           test: /\.m?js$/,
           exclude: /node_modules/,
           use: {
